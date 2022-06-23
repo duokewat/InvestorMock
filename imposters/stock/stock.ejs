@@ -1,0 +1,25 @@
+{
+    "port":19081,
+    "protocol":"http",
+    "name":"yh-finance.p.rapidapi.com Mock",
+    "defaultResponse":{
+       "statusCode":404
+    },
+    "stubs":[
+       {
+          "responses":[
+             {
+                "inject":"<%- stringify(filename, 'stock/stock.js') %>"
+             }
+          ],
+          "predicates":[
+             {
+                "contains":{
+                   "method":"GET",
+                   "path":"/market"
+                }
+             }
+          ]
+       }
+    ]
+ }

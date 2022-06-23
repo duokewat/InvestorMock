@@ -1,0 +1,25 @@
+{
+    "port":18081,
+    "protocol":"http",
+    "name":"currency-exchange.p.rapidapi.com Mock",
+    "defaultResponse":{
+       "statusCode":404
+    },
+    "stubs":[
+       {
+          "responses":[
+             {
+                "inject":"<%- stringify(filename, 'exchange/exchange.js') %>"
+             }
+          ],
+          "predicates":[
+             {
+                "contains":{
+                   "method":"GET",
+                   "path":"/exchange"
+                }
+             }
+          ]
+       }
+    ]
+ }
