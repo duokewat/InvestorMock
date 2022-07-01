@@ -1,12 +1,38 @@
 version: "3"
 services:
+  exchangeservice:
+    container_name: exchangeservice
+    image: duokewat/exchangeservice:0.0.1
+    ports:
+    - 8081:8081
+    networks:
+    - investor-cloud-network
+  stockservice:
+    container_name: stockservice
+    image: duokewat/stockservice:0.0.1
+    ports:
+    - 8082:8082
+    networks:
+    - investor-cloud-network
+  investorhub:
+    container_name: investorhub
+    image: duokewat/investorhub:0.0.1
+    ports:
+    - 8080:8080
+    networks:
+    - investor-cloud-network   
   mountebank:
-    container_name: mountebank
+    container_name: mock-server
     image: bbyars/mountebank:latest
     volumes:
     - ./imposters:/imposters
     ports:
     - 2525:2525
     - 18081:18081
-    - 19081:19081
+    - 18082:18082
     command: mb --configfile /imposters/imposters.ejs --allowInjection
+    networks:
+    - investor-cloud-network     
+networks:
+    investor-cloud-network:
+        driver: bridge      
